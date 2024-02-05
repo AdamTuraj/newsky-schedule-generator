@@ -1,3 +1,5 @@
+import os
+
 from datetime import datetime, timedelta
 import csv
 
@@ -8,6 +10,8 @@ processedSchedule = {}
 
 
 def main(code, cache, token):
+    os.makedirs("results", exist_ok=True)
+
     api = API("https://aeroapi.flightaware.com", token)
     if cache:
         data = api.fetchSchedule()
@@ -58,7 +62,7 @@ def processData(schedule):
 
 
 def initCSV(code, amountFound):
-    f = open("schedule.csv", "w")
+    f = open("results/schedule.csv", "w")
 
     date1 = datetime.now()
     date2 = date1 - timedelta(days=8)
@@ -109,9 +113,7 @@ if __name__ == "__main__":
         else:
             responses.append("")
 
-            print(
-                "Is there a json file named 'data.json' with formatted data from Flightaware?"
-            )
+            print("Is there a json file named 'data.json' in the results folder?")
             if input("y/n: ").strip().lower() == "n":
                 print(
                     "You must have a json file to pull cached data from. Please run the program again with the file in the same directory as this program."

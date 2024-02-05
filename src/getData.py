@@ -57,7 +57,7 @@ class API:
             time.sleep(60)
 
         # Backing it up because the operation above is expensive
-        with open("data.json", "w") as f:
+        with open("results/data.json", "w") as f:
             json.dump(fullData, f)
 
         print(
@@ -67,7 +67,7 @@ class API:
         return fullData
 
     def getSchedule(self):
-        with open("data.json", "r") as f:
+        with open("results/data.json", "r") as f:
             data = json.load(f)
 
         return data
