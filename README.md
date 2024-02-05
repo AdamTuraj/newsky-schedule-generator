@@ -23,3 +23,6 @@ pip install requests
 ```
 
 Now just run `newSkyExportSchedule.py` and the magic will be done!
+
+## Note
+There is no error handling done. If an error is to occur it will stop the program.
